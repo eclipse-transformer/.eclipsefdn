@@ -39,10 +39,10 @@ orgs.newOrg('technology.transformer', 'eclipse-transformer') {
         orgs.newRepoSecret('GPG_PRIVATE_KEY') {
           value: "********",
         },
-        orgs.newRepoSecret('OSSRH_PASSWORD') {
+        orgs.newRepoSecret('CENTRAL_SONATYPE_TOKEN_PASSWORD') {
           value: "pass:bots/technology.transformer/central.sonatype.org/password",
         },
-        orgs.newRepoSecret('OSSRH_USERNAME') {
+        orgs.newRepoSecret('CENTRAL_SONATYPE_TOKEN_USERNAME') {
           value: "pass:bots/technology.transformer/central.sonatype.org/username",
         },
       ],
