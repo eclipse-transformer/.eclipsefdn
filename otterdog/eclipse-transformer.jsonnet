@@ -8,6 +8,23 @@ orgs.newOrg('technology.transformer', 'eclipse-transformer') {
       default_workflow_permissions: "write",
     },
   },
+  secrets+: [
+    orgs.newOrgSecret('GPG_KEY_ID') {
+      value: 'pass:bots/technology.transformer/gpg/key_id',
+    },
+    orgs.newOrgSecret('GPG_PASSPHRASE') {
+      value: "pass:bots/technology.transformer/gpg/passphrase",
+    },
+    orgs.newOrgSecret('GPG_PRIVATE_KEY') {
+      value: 'pass:bots/technology.transformer/gpg/secret-subkeys.asc',
+    },
+    orgs.newOrgSecret('CENTRAL_SONATYPE_TOKEN_PASSWORD') {
+      value: "pass:bots/technology.transformer/central.sonatype.org/token-password",
+    },
+    orgs.newOrgSecret('CENTRAL_SONATYPE_TOKEN_USERNAME') {
+      value: "pass:bots/technology.transformer/central.sonatype.org/token-username",
+    },
+  ],
   _repositories+:: [
     orgs.newRepo('transformer') {
       allow_merge_commit: true,
@@ -29,23 +46,6 @@ orgs.newOrg('technology.transformer', 'eclipse-transformer') {
       workflows+: {
         default_workflow_permissions: "write",
       },
-      secrets: [
-        orgs.newRepoSecret('GPG_FINGERPRINT') {
-          value: "********",
-        },
-        orgs.newRepoSecret('GPG_PASSPHRASE') {
-          value: "********",
-        },
-        orgs.newRepoSecret('GPG_PRIVATE_KEY') {
-          value: "********",
-        },
-        orgs.newRepoSecret('CENTRAL_SONATYPE_TOKEN_PASSWORD') {
-          value: "pass:bots/technology.transformer/central.sonatype.org/password",
-        },
-        orgs.newRepoSecret('CENTRAL_SONATYPE_TOKEN_USERNAME') {
-          value: "pass:bots/technology.transformer/central.sonatype.org/username",
-        },
-      ],
       environments: [
         orgs.newEnvironment('github-pages') {
           branch_policies+: [
